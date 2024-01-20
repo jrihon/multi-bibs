@@ -101,6 +101,7 @@
 
   } else if type(arr_of_pubs) == "array" {
 
+    let counter = 0
     for name_pub in arr_of_pubs {
 
       let val = bibchapter.at(name_pub, default: 404)
@@ -109,13 +110,25 @@
         panic("The key: " + name_pub + " was not found in the queried yml.")
       }
 
-      link(
-        label(name_pub + basename), // string coerced into label
-        text(weight: "bold",
-          fill: rgb("#FF4252"),
-          super("," + str(val))
-        ) // the indexing superscript
-      )
+      let citation = ""
+      if counter == 0 {
+        link(
+          label(name_pub + basename), // string coerced into label
+          text(weight: "bold",
+            fill: rgb("#FF4252"),
+            super(str(val))
+          ) // the indexing superscript
+        )
+      } else {
+        link(
+          label(name_pub + basename), // string coerced into label
+          text(weight: "bold",
+            fill: rgb("#FF4252"),
+            super(",") + super(str(val))
+          ) // the indexing superscript
+        )
+      }
+      counter += 1
 
     }
 
