@@ -1,0 +1,40 @@
+haasnoot1992conformation:
+  type: article
+  title: The conformation of six-membered rings described by puckering coordinates derived from endocyclic torsion angles
+  author: Haasnoot, CAG
+  date: 1992
+  page-range: 882–887
+  parent:
+    type: periodical
+    title: Journal of the American Chemical Society
+    publisher: ACS Publications
+    issue: 3
+    volume: 114
+rings1980conformational:
+  type: article
+  title: Conformational nomenclature for five and six-membered ring forms of monosaccharides and their derivatives
+  author: Rings, Siu-Membered
+  date: 1980
+  page-range: 295–298
+  parent:
+    type: periodical
+    title: Eur J Biochem
+    volume: 100
+Sega2011Sixring:
+  type: article
+  title: Pickett angles and Cremer{–}Pople coordinates as collective variables for the enhanced sampling of six-membered ring conformations
+  author:
+  - Sega, M.
+  - Autieri, E.
+  - Pederiva, F.
+  date: 2011-01
+  page-range: 141–148
+  serial-number:
+    doi: 10.1080/00268976.2010.522208
+  parent:
+    type: periodical
+    title: Molecular Physics
+    publisher: Informa {UK} Limited
+    issue: 1
+    volume: 109
+
