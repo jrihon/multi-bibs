@@ -1,5 +1,6 @@
 from sys import argv
 from os.path import isfile
+from re import match
 
 
 # >>> python3 parsetyp.py 02_chapter.typ
@@ -21,9 +22,24 @@ with open(filename, "r") as typfile :
     total_content = list()
     content = ""
     citefound = False
+    commented = False
     brackfound = 0
 
     for i, char in enumerate(typ): 
+
+        # Ignore commented rules
+        if char == "/": 
+            if typ[i:i+2] == "//": 
+                commented = True
+                continue 
+        if commented : 
+#            print(typ[i:i+2])
+            if match(r'\n', typ[i:i+2]) :
+                commented = False
+                continue
+            else : 
+                continue
+
         if char == "#":
             # match on the word mcite; length 5
             if typ[i:(i+6)] == "#mcite":

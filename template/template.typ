@@ -93,7 +93,7 @@
     link(
       label(name_pub + basename), // string coerced into label
       text(weight: "bold",
-        fill: rgb("#FF4252"),
+        fill: rgb("#FF4252"), // red, just for highlights
         super(str(val))
       ) // the indexing superscript
     )
