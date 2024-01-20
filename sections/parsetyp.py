@@ -21,7 +21,7 @@ with open(filename, "r") as typfile :
     total_content = list()
     content = ""
     citefound = False
-    brackfound = False
+    brackfound = 0
 
     for i, char in enumerate(typ): 
         if char == "#":
@@ -32,16 +32,16 @@ with open(filename, "r") as typfile :
 
         # find the R-brackets
         if char == "(" and citefound :
-            brackfound = True
+            brackfound += 1
             continue
 
-        if citefound and brackfound :
+        if citefound and brackfound == 2 :
             if char != ")" :
                 content += char
 
             else :
                 citefound = False
-                brackfound = False
+                brackfound = 0
 
 
                 # if done, push to list and close out

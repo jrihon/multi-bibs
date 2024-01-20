@@ -37,4 +37,18 @@ Sega2011Sixring:
     publisher: Informa {UK} Limited
     issue: 1
     volume: 109
+cremer1975general:
+  type: article
+  title: General definition of ring puckering coordinates
+  author:
+  - Cremer, DT
+  - Pople, JA
+  date: 1975
+  page-range: 1354–1358
+  parent:
+    type: periodical
+    title: Journal of the American Chemical Society
+    publisher: ACS Publications
+    issue: 6
+    volume: 97
 

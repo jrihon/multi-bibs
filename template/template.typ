@@ -56,45 +56,101 @@
   doc
 }
 
+/* Utility functions */
+// Works for Linux/MacOS only
+#let basename_yml(pathtofile) = {
+
+  if pathtofile.ends-with(".yml") == false {
+    panic("The called file : (" + pathtofile + ") does end in the .yml format")
+  }
+
+  if pathtofile.contains("/") {
+    pathtofile.split("/").at(-1).split(".").at(0)
+  } else {
+    pathtofile.split(".").at(0)
+  }
+}
+//
 /* Bilbiography functions */
 
 // name_pub : key of the citation
 // yml_dict : the dict, parsed by python
 // style    : citation style
-#let mcite(name_pub, ordered_dict) = {
-  let val = ordered_dict.at(name_pub, default: 404)
- 
-  if val == 404 {
-    panic("The key: " + name_pub + " was not found in the queried yml.")
+#let mcite(arr_of_pubs, bilbio) = {
+
+  let basename = basename_yml(bilbio.bibyml)
+  let bibchapter = bilbio.bibchapter
+  // if the array contains one value, Typst coerces it to extract to only value and give it to you
+  if type(arr_of_pubs) == "string" {
+
+    let name_pub = arr_of_pubs // array got coerced into a single string
+    let val = bibchapter.at(name_pub, default: 404)
+   
+    if val == 404 {
+      panic("The key: " + name_pub + " was not found in the queried yml.")
+    }
+
+    link(
+      label(name_pub + basename), // string coerced into label
+      text(weight: "bold",
+        fill: rgb("#FF4252"),
+        super(str(val))
+      ) // the indexing superscript
+    )
+
+
+  } else if type(arr_of_pubs) == "array" {
+
+    for name_pub in arr_of_pubs {
+
+      let val = bibchapter.at(name_pub, default: 404)
+     
+      if val == 404 {
+        panic("The key: " + name_pub + " was not found in the queried yml.")
+      }
+
+      link(
+        label(name_pub + basename), // string coerced into label
+        text(weight: "bold",
+          fill: rgb("#FF4252"),
+          super("," + str(val))
+        ) // the indexing superscript
+      )
+
+    }
+
+  } else {
+    panic("Invalid parameters passed to mcite() : " + str(type(arr_of_pubs)))
+
   }
 
-  link(
-    label(name_pub), // string coerced into label
-    text(weight: "bold", fill: rgb("#FF4252"), super(str(val)) ) // the indexing superscript
-  )
   
 //  val // return the index of the order of appearance of the citation
 }
 
-#let mbiblio(name_yml, ordered_dict) = {
+#let mbibliography(name_yml, biblio) = {
 
+  let bibchapter = biblio.bibchapter
+  let bibyml = yaml(biblio.bibyml)
   pagebreak()
+
   [#text("Bibliography", weight: "bold", size: 16pt) \ ]
 
   let ymlbib = yaml(name_yml)
+  let basename = basename_yml(name_yml)
+
   let counter = 0
 
-  for author in ordered_dict.keys() {
+  for name_pub in bibchapter.keys() {
     counter += 1
-    [#text(str(counter) + ". ") #label(author)]
-       
-    h(1em)
 
-    // label the bibliography to the superscript index value in the text
+    // unique labels indicate the name of the `author key` and the name of the `yaml bibliography`
+    [#text(str(counter) + ". ") #label(name_pub + basename)] // labels have to remain in lobal scope to their appended text
+    h(1em) // extra space before citation
     
 
-    let auth = ymlbib.at(author)
-    for (key, value) in auth {
+    let author = ymlbib.at(name_pub)
+    for (key, value) in author {
       if key == "title" [#text(value + ", ", style: "italic")] 
       if key == "date" [#text(str(value), weight: "bold")  \ ] 
 
@@ -104,8 +160,6 @@
 
 }
 
-/* Utility Functions */
-//
 //#let hBar() = [
 //  #h(5pt) | #h(5pt)
 //]
