@@ -57,8 +57,4 @@ with open(bib, "w") as bibdict :
 
     for idx, citation in enumerate(total_content):
         bibdict.write(f"    {citation}: {idx+1}, \n")
-    bibdict.write(")")
-
-
-
-            
+    bibdict.write(")\n")

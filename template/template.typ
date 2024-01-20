@@ -61,16 +61,48 @@
 // name_pub : key of the citation
 // yml_dict : the dict, parsed by python
 // style    : citation style
-#let mcite(name_pub: str, yml_dict: dict, style: str) = {
-  let val = dict.at(name_pub, default: 404)
+#let mcite(name_pub, ordered_dict) = {
+  let val = ordered_dict.at(name_pub, default: 404)
  
   if val == 404 {
     panic("The key: " + name_pub + " was not found in the queried yml.")
   }
 
-  val // return the index of the order of appearance of the citation
+  link(
+    label(name_pub), // string coerced into label
+    text(weight: "bold", fill: rgb("#FF4252"), super(str(val)) ) // the indexing superscript
+  )
+  
+//  val // return the index of the order of appearance of the citation
 }
 
+#let mbiblio(name_yml, ordered_dict) = {
+
+  pagebreak()
+  [#text("Bibliography", weight: "bold", size: 16pt) \ ]
+
+  let ymlbib = yaml(name_yml)
+  let counter = 0
+
+  for author in ordered_dict.keys() {
+    counter += 1
+    [#text(str(counter) + ". ") #label(author)]
+       
+    h(1em)
+
+    // label the bibliography to the superscript index value in the text
+    
+
+    let auth = ymlbib.at(author)
+    for (key, value) in auth {
+      if key == "title" [#text(value + ", ", style: "italic")] 
+      if key == "date" [#text(str(value), weight: "bold")  \ ] 
+
+
+    }
+  }
+
+}
 
 /* Utility Functions */
 //
