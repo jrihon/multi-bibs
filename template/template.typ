@@ -128,7 +128,7 @@
 //  val // return the index of the order of appearance of the citation
 }
 
-#let mbibliography(name_yml, biblio) = {
+#let mbibliography(biblio) = {
 
   let bibchapter = biblio.bibchapter
   let bibyml = yaml(biblio.bibyml)
@@ -136,8 +136,7 @@
 
   [#text("Bibliography", weight: "bold", size: 16pt) \ ]
 
-  let ymlbib = yaml(name_yml)
-  let basename = basename_yml(name_yml)
+  let basename = basename_yml(biblio.bibyml)
 
   let counter = 0
 
@@ -149,7 +148,7 @@
     h(1em) // extra space before citation
     
 
-    let author = ymlbib.at(name_pub)
+    let author = bibyml.at(name_pub)
     for (key, value) in author {
       if key == "title" [#text(value + ", ", style: "italic")] 
       if key == "date" [#text(str(value), weight: "bold")  \ ] 

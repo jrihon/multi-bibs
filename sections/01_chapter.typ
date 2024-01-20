@@ -25,4 +25,4 @@ but still, this thing is also fine #mcite(("iupac1983nucleicacids"), biblio).
 == Conclusion
 #lorem(20)
 
-#mbibliography("../sections/first.yml", biblio)
+#mbibliography(biblio)

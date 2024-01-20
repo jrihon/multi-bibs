@@ -26,4 +26,4 @@ We did the method of Cremer #emph[et al.] #mcite(("cremer1975general"), biblio)
 == Conclusion
 #lorem(20)
 
-#mbibliography("../sections/second.yml", biblio)
+#mbibliography(biblio)
