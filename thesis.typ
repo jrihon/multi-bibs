@@ -6,9 +6,9 @@
 
 #show: layout
 
-#include {"./sections/titlepage.typ"} 
-#include {"./sections/01_chapter.typ"} 
-#include {"./sections/02_chapter.typ"} 
+#include {"./sections/00_title/titlepage.typ"} 
+#include {"./sections/01_chapter/mod.typ"} 
+#include {"./sections/02_chapter/mod.typ"} 
 
 //#autoImport("01_chapter")
 //#autoImport("02_chapter")

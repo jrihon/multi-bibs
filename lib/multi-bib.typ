@@ -47,10 +47,14 @@
   set page(
     paper: "a4",
     margin: (
-      left: 1.4cm,
-      right: 1.4cm,
-      top: .8cm,
-      bottom: .4cm,
+      left: 2cm,
+      right: 2cm,
+      top: 2cm,
+      bottom: 2cm,
+//      left: 1.4cm,
+//      right: 1.4cm,
+//      top: .8cm,
+//      bottom: .4cm,
     ),
   )
   doc

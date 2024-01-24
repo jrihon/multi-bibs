@@ -1,14 +1,13 @@
-#import "../template/template.typ": *
+#import "../../lib/multi-bib.typ": *
 
 #import "bib_01_chapter.typ": dict_01_chapter
 
 #let biblio = (
   bibchapter : dict_01_chapter,
-  bibyml : "../sections/first.yml"
+  bibyml : "../sections/01_chapter/first.yml"
 )
 
 = Chapter 1
-#lorem(150)
 
 == Introduction
 #lorem(50)

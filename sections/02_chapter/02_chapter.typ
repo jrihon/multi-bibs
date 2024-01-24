@@ -1,10 +1,10 @@
-#import "../template/template.typ": *
+#import "../../lib/multi-bib.typ": *
 
 #import "bib_02_chapter.typ": dict_02_chapter
 
 #let biblio = (
   bibchapter : dict_02_chapter,
-  bibyml : "../sections/second.yml"
+  bibyml : "../sections/02_chapter/second.yml"
 )
 
 #pagebreak()
