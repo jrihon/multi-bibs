@@ -7,11 +7,31 @@ It's still nowhere near where I would like it to be, but it does work!
 ## Mode of work
 - Insert the necessary imports (see example in Explanation)
 - Work on the manuscript, use the `#mcitation()` function to cite your references.
-- Add the `mbibliography(biblio)` function at the very end of the chapter, preferably in `mod.typ`
+- Add the `#mbibliography(biblio)` function at the very end of the chapter, preferably in `mod.typ`
 - Run the `parsetyp.py` script on the preferred directory
 - Compile the manuscript
 - ... 
 - Profit !
+
+## Attention!
+There are several rigids parts of the manuscript : 
+- `CHAPTER` directory names are unique!
+- `bibliography.yml` file names are unique!
+Or else, unique links to the correct bibliography can become ambiguous.
+</br>
+
+The file structure needs to be respected. Relative imports in typst are still not finetuned and this can make for unrecognised imports of the following structure is not followed : 
+```
+multi-bibs/ 
+    - chapters/
+        - CHAPTER_X/
+            mod.typ, X.yml
+        - CHAPTER_Y/
+            mod.typ, Y.yml
+    - lib/
+        multi-bibs.typ
+```
+
 
 ## Explanation 
 The entire repository consists of various `typst` files and a compiled `pdf` exist to show proof of it working.
@@ -25,7 +45,7 @@ import "bib_01_chapter.typ": biblio
 
 = Introduction
 This is the start of the manuscript.
-I am writing a sentence here and here follows a citation #mcitation("foo2023bar", biblio).
+I am writing a sentence here and here follows a citation #mcitation(("foo2023bar"), biblio).
 
 // At the end of the chapter, call the bibliography
 #mbibliography(biblio)
@@ -36,15 +56,15 @@ Function signatures :
     - #bibliography(biblio: dict)
 </br>
 
-- `multi-bibs/sections/parsetyp.py`; a `python3` script to parse the chapter and produce a `bib_CHAPTER.typ` file, containing the necessary information to produce separate bibliographies
+- `multi-bibs/chapters/parsetyp.py`; a `python3` script to parse the chapter and produce a `bib_CHAPTER.typ` file, containing the necessary information to produce separate bibliographies
 ```bash
 $ cd multi-bibs/chapters/
 $ python3 parsetyp.py 01_chapter/
 ```
-1. `parsetyp.py` searches for the `mod.typ` file in the `01_chapter/` directory. The `mod.typ` file contains `#include "foo.typ"`, as per the `Rustlang` file structure.
-2. Searches for all the `#mcitation((references), biblio)` instances, parses their content and stores the data in a sequential ordering.
-3. Writes out to the `bib_01_chapter.typ` file to make a `dict` with `<reference, index>` key-value pairs. 
-4. Adds the `biblio` variable that binds the `dict` and the `bibliography.yml` file. Only one `bibliography.yml` file can exist per chapter.
+1. `parsetyp.py` searches for the `mod.typ` file in the `01_chapter/` directory. The `mod.typ` file contains `#include "foo.typ"` to include various parts of the chapter.
+2. Searches for all the `#mcitation(("references"), biblio)` instances, parses their content and stores the data in a sequential ordering.
+3. Writes out to the `bib_01_chapter.typ` file to make a `dict` with `<"reference", index>` key-value pairs. 
+4. Adds the `biblio` variable that binds the `dict` and the `bibliography.yml` file together. Only one `bibliography.yml` file can exist per chapter.
 
 
 
