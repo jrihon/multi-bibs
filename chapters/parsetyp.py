@@ -4,7 +4,7 @@ from re import match
 from os import listdir
 
 ## CONSTANTS
-TYP_SRC = "sections"
+TYP_DIR = "chapters"
 
 
 ### MAIN
@@ -180,7 +180,7 @@ def search_yml(directori: str) -> str:
     ymlfile = files[0]
 
     # ../sections/prompted_directory/bibliography.yml file
-    return "../" + TYP_SRC + "/" + directory + ymlfile
+    return "../" + TYP_DIR + "/" + directory + ymlfile
 
 
 

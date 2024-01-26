@@ -2,4 +2,4 @@
 
 
 
-typst watch ./thesis.typ ./output/thesis_test.pdf --font-path ./src/fonts/
+typst watch ./main.typ ./output/main_test.pdf --font-path ./src/fonts/

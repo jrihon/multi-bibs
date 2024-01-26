@@ -6,5 +6,5 @@
 
 #let biblio = (
     bibchapter: dict_02_chapter, 
-    bibyml: "../sections/02_chapter/02_chapter.yml", 
+    bibyml: "../chapters/02_chapter/02_chapter.yml", 
 )
