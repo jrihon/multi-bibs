@@ -1,9 +1,13 @@
 from sys import argv
 from os.path import isfile, isdir
 from re import match
+from os import listdir
+
+## CONSTANTS
+TYP_SRC = "sections"
 
 
-
+### MAIN
 def main():
     directory = direct_exists(argv)
 
@@ -21,7 +25,6 @@ def main():
         # start parsing file by file 
         # include only the citations which are not present in the `citations` object
         cites = parse_typfile(directory + "/" + filename)
-        print(cites)
         for cite in cites : 
             if cite not in all_citations : 
                 all_citations.append(cite)
@@ -42,7 +45,7 @@ def direct_exists(cliargs : list[str]) -> str:
 
     # find mod file in directory
     if not isdir(directory) : 
-        exit(f"{directory} is incorrect or does not exist. Exitting ... ")
+        exit(f"{directory} is not a directory or does not exist. Exitting ... ")
 
     return directory
 
@@ -162,14 +165,34 @@ def parse_typfile(filename: str) -> list[str] :
     return total_content
 
 
+def search_yml(directori: str) -> str:
+
+    directory = directori + "/"
+    # search for a yml file.
+    files = [x for x in listdir(directory) if x.endswith(".yml")]
+
+    if len(files) > 1 :
+        allfiles = "\n".join(files)
+        exit(f"Conflict... Multiple yml files found in the {directory}:\n{allfiles}")
+    elif len(files) == 0 :
+        exit(f"No yml files found in the {directory}.")
+
+    ymlfile = files[0]
+
+    # ../sections/prompted_directory/bibliography.yml file
+    return "../" + TYP_SRC + "/" + directory + ymlfile
+
+
+
 def write_dict_to_typ(directory: str, all_citations: list[str]) -> None:
-    # fix this issue
+
+    directori = ""
     if directory.endswith("/"): 
-         directory = directory[0:-1] # parse up until the final character
-    bib = directory + "/bib_" + directory + ".typ" # make name to file unique
+         directori = directory[0:-1] # parse up until the final character
+    bib = directori + "/bib_" + directori + ".typ" # make name to file unique
     with open(bib, "w") as bibdict :
 
-        dictname = "dict_" + directory.split(".")[0]
+        dictname = "dict_" + directori
         # start variable name and open bracket
         bibdict.write(f"#let {dictname} = (\n")
 
@@ -178,6 +201,14 @@ def write_dict_to_typ(directory: str, all_citations: list[str]) -> None:
             bibdict.write(f"    {citation}: {idx+1}, \n")
 
         # close bracket
+        bibdict.write(")\n")
+
+        # make biblio variable
+        ymlfile = search_yml(directori)
+        bibdict.write("\n")
+        bibdict.write(f"#let biblio = (\n")
+        bibdict.write(f"    bibchapter: {dictname}, \n")
+        bibdict.write(f"    bibyml: \"{ymlfile}\", \n")
         bibdict.write(")\n")
 
 
