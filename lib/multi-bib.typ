@@ -44,8 +44,7 @@
       text(weight: "bold",
         fill: rgb("#FF4252"),     // red, just for highlights, can be deleted later
         super(str(val)))          // the citation-indexing superscripted
-      ) 
-    )
+    ) 
 
   // if the type is an array
   } else if type(arr_of_pubs) == "array" {
@@ -80,12 +79,9 @@
         )
       }
       counter += 1
-
     }
-
   } else {
     panic("Invalid parameters passed to mcite() : " + str(type(arr_of_pubs)))
-
   }
 }
 
@@ -117,4 +113,5 @@
       if key == "date" [#text(str(value), weight: "bold", size: fontsize)  \ ] // "\" is a newline character in typst
     }
   }
+
 }

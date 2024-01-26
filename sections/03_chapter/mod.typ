@@ -1,9 +1,9 @@
 #import "../../lib/multi-bib.typ": *
-#import "bib_02_chapter.typ": biblio
+#import "bib_03_chapter.typ": biblio // import dictionary from the generated file
 
 #pagebreak() // pagebreak previous bibliography
 
-= Chapter 2
+= Chapter 3
 
 #include "introduction.typ"
 #include "methods.typ"
