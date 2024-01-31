@@ -13,7 +13,8 @@ haasnoot1992conformation:
 rings1980conformational:
   type: article
   title: Conformational nomenclature for five and six-membered ring forms of monosaccharides and their derivatives
-  author: Rings, Siu-Membered
+  author: 
+    - IUPAC, JCBN
   date: 1980
   page-range: 295–298
   parent:
@@ -22,7 +23,7 @@ rings1980conformational:
     volume: 100
 Sega2011Sixring:
   type: article
-  title: Pickett angles and Cremer{–}Pople coordinates as collective variables for the enhanced sampling of six-membered ring conformations
+  title: Pickett angles and Cremer–Pople coordinates as collective variables for the enhanced sampling of six-membered ring conformations
   author:
   - Sega, M.
   - Autieri, E.

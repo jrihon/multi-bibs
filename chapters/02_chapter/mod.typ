@@ -11,4 +11,4 @@
 #include "discussion.typ"
 
 
-#mbibliography(biblio)
+#mbibliography(biblio, "apa")

@@ -85,15 +85,114 @@
   }
 }
 
-#let mbibliography(biblio) = {
+#let set_authors(publication, fontsize) = {
 
-  pagebreak() // page break to start bibliography
+  let authors = publication.at("author", default: 404)
+
+  if authors == 404 {
+      [#text("NO AUTHORS, ", size: fontsize)]
+  } else {
+      for auth in authors {
+        if type(auth) == "string" {
+          let lastname = auth.split(",").at(0)
+          let firstname = auth.split(",").at(1, default:"Err").slice(0,2)
+          [#text(lastname + "," + firstname + "., ", size: fontsize)]
+        }
+      }
+  }
+}
+
+#let set_title(publication, fontsize) = { 
+
+  let title = publication.at("title", default: 404)
+
+  if title == 404 {
+    [#text("NO TITLE, ", style: "italic", size: fontsize)]
+  } else {
+    [#text(title + ", ", style: "italic", size: fontsize)]
+  }
+}
+
+#let set_date(publication, fontsize) = { 
+
+  let date = publication.at("date", default: 404)
+
+  if date == 404 {
+    [#text("NO DATE, ", style: "italic", size: fontsize)]
+  } else {
+    [#text("(" + str(date) + ")", size: fontsize)  ]
+  }
+}
+
+
+#let set_journal(publication, fontsize) = {
+
+  let parent = publication.at("parent", default: 404)
+
+  if parent == 404 {
+    [#text("NO PARENT FOUND, ", style: "italic", size: fontsize)]
+  } else {
+
+    let journal = parent.at("title", default: 404)
+    if journal == 404 {
+      [#text(str("NO JOURNAL, "), style: "italic", size: fontsize)  ]
+    } else {
+      [#text(str(journal) + ", ", style: "italic", size: fontsize)  ]
+    }
+  }
+
+
+}
+#let set_issue(publication, fontsize) = {
+
+  let parent = publication.at("parent", default: 404)
+
+  if parent == 404 {
+    [#text("NO PARENT FOUND, ", style: "italic", size: fontsize)]
+  } else {
+
+    let issue = parent.at("issue", default: 404)
+    if issue == 404 {
+      [#text(str("NO ISSUE"), style: "italic", size: fontsize)  ]
+    } else {
+      [#text(str(issue), style: "italic", size: fontsize)  ]
+    }
+
+    let volume = parent.at("volume", default: 404)
+    if volume == 404 {
+      [#text("(" + str("NO VOLUME") + "),", size: fontsize)  ]
+    } else {
+      [#text("(" + str(volume) + "),", size: fontsize)  ]
+    }
+  }
+}
+
+#let set_pages(publication, fontsize) = {
+  let pagerange = publication.at("page-range", default: 404)
+
+  if pagerange == 404 {
+    [#text("NO PAGERANGE", size: fontsize)]
+  } else {
+    [#text(str(pagerange), size: fontsize)  ]
+  }
+}
+
+#let set_doi(publication, fontsize) = {
+  let doi = publication.at("doi", default: 404)
+
+  if doi == 404 {
+    [#text("NO DOI", size: fontsize)]
+  } else {
+    [#text(str(doi), size: fontsize)  ]
+  }
+}
+
+#let apa_style(biblio) = {
 
   let bibchapter = biblio.bibchapter
   let bibyml = yaml(biblio.bibyml)
 
   let fontsize = 10pt
-  [#text("Bibliography", weight: "bold", size: 16pt) \ ]
 
   let basename = basename_yml(biblio.bibyml)
 
@@ -106,12 +205,42 @@
     [#text(str(counter) + ". ", size: fontsize) #label(name_pub + basename)] // labels have to remain in lobal scope to their appended text
     h(1em) // extra space before citation
     
+    // Authors, Date, Title, Journal, volume number(issue number), pages, DOI
 
-    let author = bibyml.at(name_pub)
-    for (key, value) in author {
-      if key == "title" [#text(value + ", ", style: "italic", size: fontsize)] 
-      if key == "date" [#text(str(value), weight: "bold", size: fontsize)  \ ] // "\" is a newline character in typst
-    }
+    let publication = bibyml.at(name_pub)
+
+    set_authors(publication, fontsize)
+    set_date(publication, fontsize) 
+    set_title(publication, fontsize)
+    set_journal(publication, fontsize)
+    set_issue(publication, fontsize)
+    set_pages(publication, fontsize); [#text(". ")] // punctuation before DOI
+    set_doi(publication, fontsize)
+    [ \ ] // set newline
+
+
+
+//    let publications = bibyml.at(name_pub)
+//    for (key, value) in publications {
+//      if key == "author" { set_authors(value, fontsize) }
+//      if key == "title" [#text(value + ", ", style: "italic", size: fontsize)] 
+//      if key == "date" [#text("(" + str(value) + ")", size: fontsize)  \ ] // "\" is a newline character in typst
+//    }
+  }
+}
+
+#let mbibliography(biblio, style) = {
+
+  pagebreak() // page break to start bibliography
+
+  let fontsize = 10pt
+  [#text("Bibliography", weight: "bold", size: 16pt) \ ]
+
+  if style == "apa" {
+    apa_style(biblio)
+  } else {
+    panic("Style of the bilbiography " + style + "is not implemented.")
   }
 
 }
+

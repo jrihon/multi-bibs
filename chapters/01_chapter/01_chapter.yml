@@ -18,9 +18,7 @@ iupac1983nucleicacids:
   type: article
   title: Abbreviations and Symbols for the Description of Conformations of Polynucleotide Chains
   author:
-    name: Biochemical Nomenclature (JCBN)
-    given-name: IUPAC-IUB Joint Commission
-    prefix: on
+    - IUPAC-IUB, Joint Commission
   date: 1983
   page-range: 9–15
   parent:
