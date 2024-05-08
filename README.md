@@ -1,7 +1,7 @@
 # Multi-bibs
-A typst library to make multiple bibliographies in a single document possible!
+A typst library to make multiple bibliographies in a single document.
 
-DISCLAIMER : Very early development, but functional!
+DISCLAIMER : rudimentary, but functional!
 ## Plugin
 ```typst
 //! rootdirectory/chapters/01_chapter/mod.typ
@@ -36,9 +36,9 @@ The second sentence includes another citation #mcitation(("qoo1973qux"), biblio)
 ## Usage
 1. Make a new `CHAPTER_X/` directory.
 2. Add `mod.typ` and `bibliography_X.yml` to `CHAPTER_X/`.
-3. Run the `parsetyp.py` script on `CHAPTER_X/` to instance an empty bibliography. This generates a `bib_CHAPTER_X.typ` file in `CHAPTER_X/`.
+3. Add `CHAPTER_X/` to the the `convert.sh` script and run it to instance an empty bibliography. This generates a `bib_CHAPTER_X.typ` file in `CHAPTER_X/`.
 4. Work on the manuscript, use the `#mcitation()` function to cite your references.
-    - Run the `parsetyp.py` script on `CHAPTER_X/` to fill out bibliography when adding new references.
+    - Run the `convert.sh` to refresh the bibliography when adding new references.
 5. Add the `#mbibliography(biblio)` function at the very end of the chapter, preferably in `mod.typ`.
 
 
