@@ -3,4 +3,4 @@
 
 == Results
 #lorem(50)
-We did the method of Cremer et al #mcite(("cremer1975general"), biblio).
+We did the method of Cremer et al #mcite(("Cremer1975general"), biblio).

@@ -1,7 +1,7 @@
 #let dict_03_chapter = (
-    "iupac1983nucleicacids": 1, 
-    "neese2020orca": 2, 
-    "cremer1975general": 3, 
+    "Iupac1983nucleicacids": 1, 
+    "Neese2021orca": 2, 
+    "Cremer1975general": 3, 
 )
 
 #let biblio = (

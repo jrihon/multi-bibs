@@ -10,4 +10,4 @@
 #include "discussion.typ"
 
 
-#mbibliography(biblio, "apa")
+#mbibliography(biblio, "ieee")

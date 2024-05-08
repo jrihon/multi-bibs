@@ -102,7 +102,7 @@ rootdirectory/
 
 
 ## TODO
-- Implement a better system for parsing, hopefully `typst` native
+- Wait until we can implement our own element functions in `Typst` so we can ditch the python script
 - Implement citations where consecutive numbering goes `1-4`, not `1,2,3,4`
 - Figure out how to make variables more global to avoid pesky import calls in every file?
 - Pathing in the generated `biblio.bibyml` is somewhat hardcoded and hopefully I can change this later

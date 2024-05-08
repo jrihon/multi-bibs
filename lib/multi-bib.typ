@@ -199,7 +199,7 @@
   let serial-number = publication.at("serial-number", default: 404)
   let url = publication.at("url", default: 404)
 
-  if serial-number == 404 {
+  if serial-number == 404 or url == 404 {
     [#text("NO DOI")]
   } else {
     let doi = serial-number.at("doi", default: 404)

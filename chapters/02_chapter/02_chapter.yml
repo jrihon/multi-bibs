@@ -1,27 +1,42 @@
-haasnoot1992conformation:
+Haasnoot1992conformation:
   type: article
   title: The conformation of six-membered rings described by puckering coordinates derived from endocyclic torsion angles
-  author: Haasnoot, CAG
-  date: 1992
-  page-range: 882–887
+  author: Haasnoot, C. A. G.
+  date: 1992-01
+  page-range: 882
+  url: http://dx.doi.org/10.1021/ja00029a013
+  serial-number:
+    doi: 10.1021/ja00029a013
+    issn: 1520-5126
   parent:
     type: periodical
     title: Journal of the American Chemical Society
-    publisher: ACS Publications
+    publisher: American Chemical Society (ACS)
     issue: 3
     volume: 114
-rings1980conformational:
+Zgarbova2015dnaol15:
   type: article
-  title: Conformational nomenclature for five and six-membered ring forms of monosaccharides and their derivatives
-  author: 
-    - IUPAC, JCBN
-  date: 1980
-  page-range: 295–298
+  title: Refinement of the Sugar–Phosphate Backbone Torsion Beta for AMBER Force Fields Improves the Description of Z- and B-DNA
+  author:
+  - Zgarbová, Marie
+  - Šponer, Jiří
+  - Otyepka, Michal
+  - Cheatham, Thomas E.
+  - Galindo-Murillo, Rodrigo
+  - Jurečka, Petr
+  date: 2015-11
+  page-range: 5723
+  url: http://dx.doi.org/10.1021/acs.jctc.5b00716
+  serial-number:
+    doi: 10.1021/acs.jctc.5b00716
+    issn: 1549-9626
   parent:
     type: periodical
-    title: Eur J Biochem
-    volume: 100
-Sega2011Sixring:
+    title: Journal of Chemical Theory and Computation
+    publisher: American Chemical Society (ACS)
+    issue: 12
+    volume: 11
+Sega2011sixring:
   type: article
   title: Pickett angles and Cremer–Pople coordinates as collective variables for the enhanced sampling of six-membered ring conformations
   author:
@@ -29,27 +44,33 @@ Sega2011Sixring:
   - Autieri, E.
   - Pederiva, F.
   date: 2011-01
-  page-range: 141–148
+  page-range: 141
+  url: http://dx.doi.org/10.1080/00268976.2010.522208
   serial-number:
     doi: 10.1080/00268976.2010.522208
+    issn: 1362-3028
   parent:
     type: periodical
     title: Molecular Physics
-    publisher: Informa {UK} Limited
+    publisher: Informa UK Limited
     issue: 1
     volume: 109
-cremer1975general:
+Cremer1975general:
   type: article
   title: General definition of ring puckering coordinates
   author:
-  - Cremer, DT
-  - Pople, JA
-  date: 1975
-  page-range: 1354–1358
+  - Cremer, D.
+  - Pople, J. A.
+  date: 1975-03
+  page-range: 1354
+  url: http://dx.doi.org/10.1021/JA00839A011
+  serial-number:
+    doi: 10.1021/ja00839a011
+    issn: 1520-5126
   parent:
     type: periodical
     title: Journal of the American Chemical Society
-    publisher: ACS Publications
+    publisher: American Chemical Society (ACS)
     issue: 6
     volume: 97
 
