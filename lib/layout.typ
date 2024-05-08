@@ -2,7 +2,7 @@
 
 
 
-#let layout(doc) = {
+#let layout(document) = {
   set text(
     font: "Roboto",
     weight: "regular",
@@ -18,6 +18,6 @@
       bottom: 2cm,
     ),
   )
-  doc
+  document
 }
 

@@ -36,7 +36,7 @@ The second sentence includes another citation #mcitation(("qoo1973qux"), biblio)
 ## Usage
 1. Make a new `CHAPTER_X/` directory.
 2. Add `mod.typ` and `bibliography_X.yml` to `CHAPTER_X/`.
-3. Run the `parsetyp.py` script on `CHAPTER_X/` to instance an empty bibliography. This generates a `bib_CHAPTER_X.typ` file.
+3. Run the `parsetyp.py` script on `CHAPTER_X/` to instance an empty bibliography. This generates a `bib_CHAPTER_X.typ` file in `CHAPTER_X/`.
 4. Work on the manuscript, use the `#mcitation()` function to cite your references.
     - Run the `parsetyp.py` script on `CHAPTER_X/` to fill out bibliography when adding new references.
 5. Add the `#mbibliography(biblio)` function at the very end of the chapter, preferably in `mod.typ`.
